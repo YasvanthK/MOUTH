@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MOUTH – Autism Communication App</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; background:#f0f4f9; text-align:center; }
+    header { background:#2563eb; color:#fff; padding:15px; font-size:22px; font-weight:bold; }
+    .grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; padding:20px; }
+    .card { background:#fff; border-radius:15px; padding:30px; box-shadow:0 4px 8px rgba(0,0,0,0.1);
+            cursor:pointer; font-size:20px; transition: transform 0.2s; }
+    .card:hover { transform: scale(1.05); }
+    .hidden { display:none; }
+    .phrase { font-size:28px; font-weight:bold; margin-top:20px; }
+    button { margin-top:20px; padding:12px 20px; font-size:18px; border:none; border-radius:10px; background:#2563eb; color:#fff; cursor:pointer; }
+    .qty { margin-top:10px; }
+    select { padding:8px; font-size:16px; border-radius:8px; }
+  </style>
+</head>
+<body>
+
+<header>MOUTH – My Own Unique Talking Helper</header>
+
+<!-- MAIN MENU -->
+<div id="mainMenu" class="grid">
+  <div class="card" onclick="openFolder('privateMenu')">🏠<br>Private</div>
+  <div class="card" onclick="openFolder('publicMenu')">🌍<br>Public</div>
+  <div class="card" onclick="openFolder('schoolMenu')">🏫<br>School</div>
+</div>
+
+<!-- PRIVATE MENU -->
+<div id="privateMenu" class="grid hidden">
+  <div class="card" onclick="speak('I am happy')">😊<br>Happy</div>
+  <div class="card" onclick="speak('I am sad')">😢<br>Sad</div>
+  <div class="card" onclick="speak('I am going to sleep')">😴<br>Sleep</div>
+  <div class="card" onclick="speak('I am angry')">😡<br>Angry</div>
+  <button onclick="goBack('mainMenu','privateMenu')">⬅ Back</button>
+</div>
+
+<!-- PUBLIC MENU -->
+<div id="publicMenu" class="grid hidden">
+  <div class="card" onclick="openFolder('stationery')">✏️<br>Stationery</div>
+  <div class="card" onclick="openFolder('food')">🍚<br>Food</div>
+  <div class="card" onclick="openFolder('vegetables')">🥦<br>Vegetables</div>
+  <button onclick="goBack('mainMenu','publicMenu')">⬅ Back</button>
+</div>
+
+<!-- STATIONERY -->
+<div id="stationery" class="grid hidden">
+  <div class="card">
+    ✏️<br>Pencil
+    <div class="qty">Qty: <select id="pencilQty"><option>1</option><option>2</option><option>3</option></select></div>
+    <button onclick="speakQty('Pencil','pencilQty')">Select</button>
+  </div>
+  <div class="card">
+    📖<br>Book
+    <div class="qty">Qty: <select id="bookQty"><option>1</option><option>2</option><option>3</option></select></div>
+    <button onclick="speakQty('Book','bookQty')">Select</button>
+  </div>
+  <div class="card">
+    📏<br>Scale
+    <div class="qty">Qty: <select id="scaleQty"><option>1</option><option>2</option></select></div>
+    <button onclick="speakQty('Scale','scaleQty')">Select</button>
+  </div>
+  <button onclick="goBack('publicMenu','stationery')">⬅ Back</button>
+</div>
+
+<!-- FOOD -->
+<div id="food" class="grid hidden">
+  <div class="card">
+    🍚<br>Rice
+    <div class="qty">Kg: <select id="riceQty"><option>1</option><option>2</option><option>5</option></select></div>
+    <button onclick="speakQtyKg('Rice','riceQty')">Select</button>
+  </div>
+  <div class="card">
+    🍞<br>Bread
+    <div class="qty">Qty: <select id="breadQty"><option>1</option><option>2</option></select></div>
+    <button onclick="speakQty('Bread','breadQty')">Select</button>
+  </div>
+  <div class="card" onclick="openFolder('fruits')">🍎<br>Fruits</div>
+  <button onclick="goBack('publicMenu','food')">⬅ Back</button>
+</div>
+
+<!-- FRUITS -->
+<div id="fruits" class="grid hidden">
+  <div class="card">
+    🍎<br>Apple
+    <div class="qty">Kg: <select id="appleQty"><option>1</option><option>2</option><option>3</option></select></div>
+    <button onclick="speakQtyKg('Apple','appleQty')">Select</button>
+  </div>
+  <div class="card">
+    🍌<br>Banana
+    <div class="qty">Dozen: <select id="bananaQty"><option>1</option><option>2</option></select></div>
+    <button onclick="speakQty('Dozen of Bananas','bananaQty')">Select</button>
+  </div>
+  <div class="card">
+    🥭<br>Mango
+    <div class="qty">Kg: <select id="mangoQty"><option>1</option><option>2</option><option>5</option></select></div>
+    <button onclick="speakQtyKg('Mango','mangoQty')">Select</button>
+  </div>
+  <button onclick="goBack('food','fruits')">⬅ Back</button>
+</div>
+
+<!-- VEGETABLES -->
+<div id="vegetables" class="grid hidden">
+  <div class="card">
+    🥕<br>Carrot
+    <div class="qty">Kg: <select id="carrotQty"><option>1</option><option>2</option></select></div>
+    <button onclick="speakQtyKg('Carrot','carrotQty')">Select</button>
+  </div>
+  <div class="card">
+    🍅<br>Tomato
+    <div class="qty">Kg: <select id="tomatoQty"><option>1</option><option>2</option><option>5</option></select></div>
+    <button onclick="speakQtyKg('Tomato','tomatoQty')">Select</button>
+  </div>
+  <div class="card">
+    🥔<br>Potato
+    <div class="qty">Kg: <select id="potatoQty"><option>1</option><option>2</option><option>5</option></select></div>
+    <button onclick="speakQtyKg('Potato','potatoQty')">Select</button>
+  </div>
+  <button onclick="goBack('publicMenu','vegetables')">⬅ Back</button>
+</div>
+
+<!-- SCHOOL MENU -->
+<div id="schoolMenu" class="grid hidden">
+  <div class="card" onclick="speak('I want to study Math')">🔢<br>Math</div>
+  <div class="card" onclick="speak('I want to read English')">📖<br>English</div>
+  <div class="card" onclick="speak('I want to draw')">🎨<br>Drawing</div>
+  <div class="card" onclick="speak('I want to play')">⚽<br>Play</div>
+  <button onclick="goBack('mainMenu','schoolMenu')">⬅ Back</button>
+</div>
+
+<script>
+  function openFolder(folder){
+    document.querySelectorAll(".grid").forEach(d=>d.classList.add("hidden"));
+    document.getElementById(folder).classList.remove("hidden");
+  }
+
+  function goBack(parent,child){
+    document.getElementById(child).classList.add("hidden");
+    document.getElementById(parent).classList.remove("hidden");
+    speechSynthesis.cancel();
+  }
+
+  function speak(text){
+    let utter=new SpeechSynthesisUtterance(text);
+    utter.rate=1;
+    speechSynthesis.speak(utter);
+  }
+
+  function speakQty(item,selectId){
+    let qty=document.getElementById(selectId).value;
+    let text=`I want ${qty} ${item}${qty>1?'s':''}`;
+    speak(text);
+  }
+
+  function speakQtyKg(item,selectId){
+    let qty=document.getElementById(selectId).value;
+    let text=`I want ${qty} kilograms of ${item}`;
+    speak(text);
+  }
+</script>
+
+</body>
+</html>
